@@ -1,38 +1,19 @@
 class Solution:
   def isValid(self, s: str) -> bool:
-    temp_list=[]
-    if len(s)%2==0:
-      for item in s:
-        if item=='(' or item=='{' or item=='[':
-          temp_list.append(item)
-        elif item==')':
-          if len(temp_list) > 0:
-            if temp_list.pop()!='(':
-              return False
-          else:
-            return False
-        elif item=='}':
-          if len(temp_list) > 0:
-            if temp_list.pop()!='{':
-              return False
-          else:
-            return False
-        elif item==']':
-          if len(temp_list) > 0:
-            if temp_list.pop()!='[':
-              return False
-          else:
-            return False
-      if len(temp_list)==0:
-        return True
-    else:
-      return False
+    map={')':'(','}':'{',']':'['}
+    stack=[]
+    for char in s:
+      if char in map.keys():
+        top_element=stack.pop() if stack else '#'
+        if top_element!=map[char]:
+          return False
+      else:
+        stack.append(char)
+    return not stack
 
 
-s ="))"
+s =")"
 obj = Solution()
+print(obj.isValid(s))
 
-if obj.isValid(s):
-  print('true')
-else:
-  print('false')
+

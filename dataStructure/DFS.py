@@ -1,10 +1,11 @@
-def depth_first_search(graph, start, visited):
-    visited[start] = True
-    print(start,end=' ')
+def depth_first_search(graph, start,visited):
+    visited[start]=True
+    print(start)
 
-    for adjacent_node in graph[start]:
-        if not visited[adjacent_node]:
-            depth_first_search(graph,adjacent_node,visited)
+    for neighbour in graph[start]:
+        if not visited[neighbour]:
+            depth_first_search(graph,neighbour,visited)
+
 
 graph = {
     'A': ['B', 'C'],
@@ -16,5 +17,6 @@ graph = {
     'G': ['C'],
     'H': ['E']
 }
-visited_nodes={node: False for node in graph}
-depth_first_search(graph,'A',visited_nodes)
+
+visited={node: False for node in graph}
+depth_first_search(graph,'A',visited)

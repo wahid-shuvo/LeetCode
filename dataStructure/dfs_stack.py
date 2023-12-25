@@ -1,17 +1,16 @@
 def depth_first_search(graph, start):
     visited = {node: False for node in graph}
+
     stack = [start]
 
     while stack:
         current_node = stack.pop()
-
         if not visited[current_node]:
-            print(current_node, end=' ')
+            print(current_node)
             visited[current_node] = True
-
-        for next_node in graph[current_node]:
-            if not visited[next_node]:
-                stack.append(next_node)
+        for next in graph[current_node]:
+            if not visited[next]:
+                stack.append(next)
 
 
 graph = {

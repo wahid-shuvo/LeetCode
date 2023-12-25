@@ -2,17 +2,11 @@ from typing import List
 import math
 class Solution:
   def productExceptSelf(self, nums: List[int]) -> List[int]:
-    result_prefix=[]
-    prefix=1
-    postfix=1
-    size=len(nums)
-    for i in range(size):
-      result_prefix.append(prefix)
-      prefix = prefix*nums[i]
-    for i in range(-1,-size-1,-1):
-      result_prefix[i]=result_prefix[i]*postfix
-      postfix = postfix*nums[i]
-    return result_prefix
+    ans, pre, post = [1] * len(nums), 1, 1
+    for i in range(len(nums)):
+      ans[i], ans[-1 - i] = pre * ans[i], post * ans[-1 - i]
+      pre, post = pre * nums[i], post * nums[-1 - i]
+    return ans
 
 nums=[1,2,3,4]
 obj = Solution()
